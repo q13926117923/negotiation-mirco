@@ -1,6 +1,7 @@
 package model
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -14,6 +15,7 @@ var DB *gorm.DB
 
 // Database 在中间件中初始化mysql链接
 func Database(connString string) {
+	fmt.Println(connString)
 	db, err := gorm.Open("mysql", connString)
 	if err != nil {
 		panic(err)
@@ -32,5 +34,9 @@ func Database(connString string) {
 	//超时
 	db.DB().SetConnMaxLifetime(time.Second * 30)
 	DB = db
+	fmt.Println(111)
+
 	migration()
 }
+
+
